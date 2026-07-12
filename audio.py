@@ -24,4 +24,5 @@ def generate_tone(duration, filename):
     for sample in audio_data:
         wav_file.writeframes(struct.pack("<h", sample))
         
-generate_tone(DOT_DURATION, "dot.wav")
+if __name__ == "__main__":
+    generate_tone(DOT_DURATION, "dot.wav")
