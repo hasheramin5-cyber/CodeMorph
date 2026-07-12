@@ -119,8 +119,8 @@ while True:
         print(decode(code))
 
     elif choice == "3":
-        print("\nThank you for using CodeMorph!")
+        print("\nThank you for using CodeMorph!\n")
         break
 
     else:
-        print("\nInvalid Option!")
+        print("\nInvalid Option!\n")
