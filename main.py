@@ -1,3 +1,4 @@
+from audio import play_morse_audio
 import random
 
 # CodeMorph - Custom Encoder / Decoder
@@ -110,8 +111,17 @@ while True:
 
     if choice == "1":
         text = input("\nEnter Text: ")
+
+        encoded_message = encode(text)
+
         print("\nEncoded Message:\n")
-        print(encode(text))
+        print(encoded_message)
+
+        play_audio = input("\nPlay Morse Audio? (Y/N): ").upper()
+
+        if play_audio == "Y":
+            print("\nPlaying Morse Audio...\n")
+            play_morse_audio(encoded_message)
 
     elif choice == "2":
         code = input("\nEnter Code: ")
