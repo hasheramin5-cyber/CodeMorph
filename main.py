@@ -2,27 +2,30 @@ from audio import play_morse_audio, save_morse_audio
 from encoder import encode
 from decoder import decode
 
+from colorama import init, Fore, Style
+init(autoreset=True)
+
 # CodeMorph - Custom Encoder / Decoder
 
 def handle_encode():
     text = input("\nEnter Text: ")
     if not text.strip():
-        print("\nText cannot be empty.")
+        print(Fore.RED + "\nText cannot be empty.")
         return
 
     encoded_message = encode(text)
 
-    print("\nEncoded Message:")
+    print(Fore.GREEN + "\nEncoded Message:")
     print(encoded_message)
 
     play_audio = input("\nPlay Morse Audio? (Y/N): ").upper()
 
     if play_audio == "Y":
-        print("\nPlaying Morse Audio...")
+        print(Fore.CYAN + "\nPlaying Morse Audio...")
         play_morse_audio(encoded_message)
 
     elif play_audio != "N":
-        print("\nInvalid choice. Audio skipped.")
+        print(Fore.RED + "\nInvalid choice. Audio skipped.")
         
     save_audio = input("\nSave Morse Audio? (Y/N): ").upper()
 
@@ -32,34 +35,34 @@ def handle_encode():
 
         save_morse_audio(encoded_message, file_name)
 
-        print(f"\nAudio saved successfully as '{file_name}'")
+        print(Fore.GREEN + f"\nAudio saved successfully as '{file_name}'")
 
     elif save_audio != "N":
-        print("\nInvalid choice. Audio not saved.")
+        print(Fore.RED + "\nInvalid choice. Audio not saved.")
         
         
 def handle_decode():
     code = input("\nEnter Code: ")
     if not code.strip():
-        print("\nCode cannot be empty.")
+        print(Fore.RED + "\nCode cannot be empty.")
         return
     
-    print("\nDecoded Message:")
+    print(Fore.GREEN + "\nDecoded Message:")
     print(decode(code))
     
     
 def show_menu():
 
-    print("\n" + "=" * 45)
-    print("          CodeMorph v1.0")
-    print("     Custom Encoder / Decoder")
-    print("=" * 45)
+    print(Fore.CYAN + "\n" + "=" * 45)
+    print(Fore.GREEN + "          CodeMorph v1.0")
+    print(Fore.WHITE + "     Custom Encoder / Decoder")
+    print(Fore.CYAN + "=" * 45)
 
-    print("1. Encode")
-    print("2. Decode")
-    print("3. Exit")
+    print(Fore.YELLOW + "1. Encode")
+    print(Fore.YELLOW + "2. Decode")
+    print(Fore.YELLOW + "3. Exit")
 
-    print("=" * 45)
+    print(Fore.CYAN + "=" * 45)
 
 
 # Main Program
@@ -76,8 +79,8 @@ while True:
         handle_decode()
 
     elif choice == "3":
-        print("\nThank you for using CodeMorph!\n")
+        print(Fore.GREEN + "\nThank you for using CodeMorph. Goodbye!\n")
         break
 
     else:
-        print("\nInvalid Option!\n")
+        print(Fore.RED + "\nInvalid Option!\n")
