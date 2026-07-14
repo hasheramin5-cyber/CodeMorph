@@ -1,102 +1,8 @@
 from audio import play_morse_audio, save_morse_audio
-import random
+from encoder import encode
+from decoder import decode
 
 # CodeMorph - Custom Encoder / Decoder
-
-# Multiple codes can be assigned to each letter.
-
-letter_to_codes = {
-    "A": [".-", "._"],
-    "B": ["-...", "_..."],
-    "C": ["-.-.", "_._."],
-    "D": ["-..", "_.."],
-    "E": ["."],
-    "F": ["..-.", ".._."],
-    "G": ["--.", "__."],
-    "H": ["...."],
-    "I": [".."],
-    "J": [".---", ".___"],
-    "K": ["-.-", "_._"],
-    "L": [".-..", "._.."],
-    "M": ["--", "__"],
-    "N": ["-.", "_."],
-    "O": ["---", "___"],
-    "P": [".--.", ".__."],
-    "Q": ["--.-", "__._"],
-    "R": [".-.", "._."],
-    "S": ["..."],
-    "T": ["-", "_"],
-    "U": ["..-", ".._"],
-    "V": ["...-", "..._"],
-    "W": [".--", ".__"],
-    "X": ["-..-", "_.._"],
-    "Y": ["-.--", "_.__"],
-    "Z": ["--..", "__.."],
-    "1":[".----" , ".____"],
-    "2":["..---" , "..___"],
-    "3":["...--" , "...__"],
-    "4":["....-" , "...._"],
-    "5":["....."],
-    "6":["-...." , "_...."],
-    "7":["--..." , "__..."],
-    "8":["---.." , "___.."],
-    "9":["----." , "____."],
-    "0":["-----" , "_____"]
-}
-
-# Create Reverse Dictionary Automatically
-code_to_letter = {}
-
-for letter, codes in letter_to_codes.items():
-    for code in codes:
-        code_to_letter[code] = letter
-
-# Encode Function
-
-def encode(text):
-
-    words = text.upper().split()
-    encoded_words = []
-
-    for word in words:
-
-        encoded_letters = []
-
-        for letter in word:
-
-            if letter in letter_to_codes:
-
-                # Randomly choose one code
-                random_code = random.choice(letter_to_codes[letter])
-
-                encoded_letters.append(random_code)
-
-        encoded_words.append(" ".join(encoded_letters))
-
-    return "  ".join(encoded_words)
-
-
-# Decode Function
-
-def decode(code):
-
-    words = code.strip().split("  ")
-    decoded_words = []
-
-    for word in words:
-
-        decoded_letters = []
-
-        for item in word.split():
-
-            decoded_letters.append(
-                code_to_letter.get(item, "?")
-            )
-
-        decoded_words.append("".join(decoded_letters))
-
-    return " ".join(decoded_words)
-
 
 def handle_encode():
     text = input("\nEnter Text: ")
@@ -157,7 +63,6 @@ def show_menu():
 
 
 # Main Program
-
 while True:
   
     show_menu()
