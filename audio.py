@@ -80,7 +80,7 @@ def play_morse_audio(morse_code):
                     play_tone(DOT_DURATION)
                     time.sleep(SYMBOL_GAP)
 
-                elif symbol == "-":
+                elif symbol in ["-", "_"]:
                     play_tone(DASH_DURATION)
                     time.sleep(SYMBOL_GAP)
 
@@ -109,7 +109,7 @@ def save_morse_audio(morse_code, filename):
                         generate_silence(SYMBOL_GAP)
                     )
 
-                elif symbol == "-":
+                elif symbol in ["-", "_"]:
                     all_audio.extend(
                         generate_audio_samples(DASH_DURATION)
                     )
