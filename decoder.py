@@ -1,7 +1,5 @@
-from codes import code_to_letter
-
 # Decode Function
-def decode(code):
+def decode(code, code_to_letter):
 
     words = code.strip().split("  ")
     decoded_words = []

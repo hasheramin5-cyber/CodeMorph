@@ -1,8 +1,7 @@
 import random
-from codes import letter_to_codes
 
 # Encode Function
-def encode(text):
+def encode(text, letter_to_codes):
 
     words = text.upper().split()
     encoded_words = []

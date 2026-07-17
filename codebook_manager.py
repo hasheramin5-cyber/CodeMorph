@@ -10,3 +10,12 @@ def get_available_codebooks():
         available_codebooks.append(file.name)
 
     return available_codebooks
+
+def resolve_codebook_selection(index, available_codebooks):
+
+    index = index - 1
+
+    if index < 0 or index >= len(available_codebooks):
+        raise ValueError("Invalid codebook selection.")
+
+    return available_codebooks[index]
