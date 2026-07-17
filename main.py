@@ -56,13 +56,14 @@ def handle_decode():
     print(decode(code, code_to_letter))
 
 
-def show_menu():
+def show_menu(selected_codebook):
 
     print(Fore.CYAN + "\n" + "=" * 45)
     print(Fore.GREEN + "          CodeMorph v1.0")
     print(Fore.WHITE + "     Custom Encoder / Decoder")
     print(Fore.CYAN + "=" * 45)
 
+    print(Fore.WHITE + f"\nCurrent Codebook: {selected_codebook}")
     print(Fore.YELLOW + "1. Encode")
     print(Fore.YELLOW + "2. Decode")
     print(Fore.YELLOW + "3. Exit")
@@ -103,7 +104,7 @@ letter_to_codes, code_to_letter = initialize_codebook(selected_codebook)
 
 while True:
 
-    show_menu()
+    show_menu(selected_codebook)
 
     choice = input("Select Option: ")
 
