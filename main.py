@@ -1,3 +1,4 @@
+from light import play_morse_light
 from audio import play_morse_audio, save_morse_audio
 from encoder import encode
 from decoder import decode
@@ -26,6 +27,15 @@ def handle_encode():
 
     elif play_audio != "N":
         print(Fore.RED + "\nInvalid choice. Audio skipped.")
+        
+    play_light = input("\nPlay Morse Light? (Y/N): ").upper()
+
+    if play_light == "Y":
+        print(Fore.CYAN + "\nPlaying Morse Light...")
+        play_morse_light(encoded_message)
+
+    elif play_light != "N":
+        print(Fore.RED + "\nInvalid choice. Light skipped.")
         
     save_audio = input("\nSave Morse Audio? (Y/N): ").upper()
 

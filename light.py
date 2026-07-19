@@ -1,21 +1,47 @@
 import tkinter as tk
+import time
+
+
+DOT_TIME = 0.15
+DASH_TIME = DOT_TIME * 3
+GAP_TIME = DOT_TIME
 
 
 def play_morse_light(encoded_message):
     window = tk.Tk()
+    window.bind("<Escape>", lambda event: window.destroy())
     window.title("CodeMorph Signaling")
-    window.configure(bg="white")
-    window.geometry("400x400+300+150")
+    window.configure(bg="black")
     window.attributes("-fullscreen", True)
-    window.mainloop()
-  
-def flash_dot():
-    pass
 
-def flash_dash():
-    pass
+    window.update()
 
-def pause():
-    pass
+    for symbol in encoded_message:
+        if symbol == ".":
+            flash_dot(window)
 
-play_morse_light("...")
+        elif symbol == "-":
+            flash_dash(window)
+
+    time.sleep(0.5)
+    window.destroy()
+
+
+def flash_dot(window):
+    window.configure(bg="#FFFFAA")
+    window.update()
+    time.sleep(DOT_TIME)
+
+    window.configure(bg="black")
+    window.update()
+    time.sleep(GAP_TIME)
+
+
+def flash_dash(window):
+    window.configure(bg="#FFFFAA")
+    window.update()
+    time.sleep(DASH_TIME)
+
+    window.configure(bg="black")
+    window.update()
+    time.sleep(GAP_TIME)
