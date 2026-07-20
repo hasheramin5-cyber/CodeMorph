@@ -4,7 +4,10 @@ import time
 
 DOT_TIME = 0.15
 DASH_TIME = DOT_TIME * 3
-GAP_TIME = DOT_TIME
+
+SYMBOL_GAP = DOT_TIME
+LETTER_GAP = DOT_TIME * 3
+WORD_GAP = DOT_TIME * 7
 
 
 def play_morse_light(encoded_message):
@@ -16,12 +19,25 @@ def play_morse_light(encoded_message):
 
     window.update()
 
-    for symbol in encoded_message:
+    i = 0
+
+    while i < len(encoded_message):
+        symbol = encoded_message[i]
+        
         if symbol == ".":
             flash_dot(window)
 
-        elif symbol == "-":
+        elif symbol in ["-", "_"]:
             flash_dash(window)
+            
+        elif symbol == " ":
+            if i + 1 < len(encoded_message) and encoded_message[i + 1] == " ":
+                time.sleep(WORD_GAP - SYMBOL_GAP)
+                i += 1
+            else:
+                time.sleep(LETTER_GAP - SYMBOL_GAP)
+            
+        i += 1
 
     time.sleep(0.5)
     window.destroy()
@@ -34,7 +50,7 @@ def flash_dot(window):
 
     window.configure(bg="black")
     window.update()
-    time.sleep(GAP_TIME)
+    time.sleep(SYMBOL_GAP)
 
 
 def flash_dash(window):
@@ -44,4 +60,4 @@ def flash_dash(window):
 
     window.configure(bg="black")
     window.update()
-    time.sleep(GAP_TIME)
+    time.sleep(SYMBOL_GAP)
